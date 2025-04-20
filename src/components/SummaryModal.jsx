@@ -104,8 +104,6 @@ const SummaryModal = ({ open, onClose, url, title }) => {
     }
   }, [open, url]);
 
-  console.log("HUGGING FACE TOKEN", import.meta.env.VITE_HF_TOKEN);
-
   const getSummary = async (data) => {
     const response = await fetch(
       "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
