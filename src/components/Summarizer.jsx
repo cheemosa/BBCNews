@@ -121,10 +121,10 @@ const Summarizer = () => {
       "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
       {
         headers: {
-          Authorization: `Bearer ${import.meta.env.HF_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.VITE_HF_TOKEN}`,
         },
         method: "POST",
-        body: JSON.stringify(data), 
+        body: JSON.stringify(data),
       }
     );
     const result = await response.json();
