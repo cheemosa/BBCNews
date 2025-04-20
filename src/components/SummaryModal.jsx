@@ -188,7 +188,7 @@ const SummaryModal = ({ open, onClose, url, title }) => {
 
       const data = {
         inputs: textForSummary,
-        parameters: { max_length: 250, min_length: 100 },
+        parameters: { max_length: 512, min_length: 128 },
       };
       const result = await getSummary(data);
 

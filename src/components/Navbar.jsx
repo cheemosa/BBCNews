@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import bbcLogo from "../assets/image.png";
 
 const NavbarWrapper = styled.div`
@@ -32,7 +32,7 @@ const CenterLogo = styled.div`
   transform: translateX(-50%);
 
   img {
-    height: 32px;
+    height: 100px;
   }
 `;
 
@@ -64,9 +64,10 @@ const BottomNav = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 8px 16px;
+  padding: 8px 16px 0px 16px;
   background-color: #ffffff;
   border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #e0e0e0;
 
   a {
     color: #000;
@@ -87,6 +88,9 @@ const BottomNav = styled.div`
 `;
 
 const Navbar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <NavbarWrapper>
       <TopNav>
@@ -101,12 +105,16 @@ const Navbar = () => {
 
         <CenterLogo>
           <Link to="/">
-            <img src={bbcLogo} alt="BBC Logo" />
+            <img src={bbcLogo} alt="BBC Logo" height={"100px"} />
           </Link>
         </CenterLogo>
 
         <RightButtons>
-          <button className="register-btn">Register</button>
+          <button
+            className="register-btn"
+          >
+            Register
+          </button>
           <Link to="/signin" className="signin">
             Sign In
           </Link>
@@ -114,21 +122,60 @@ const Navbar = () => {
       </TopNav>
 
       <BottomNav>
-        <Link to="/" className="active">
+        <Link to="/" className={currentPath === "/" ? "active" : ""}>
           Home
         </Link>
-        <Link to="/news">News</Link>
-        <Link to="/sport">Sport</Link>
-        <Link to="/business">Business</Link>
-        <Link to="/innovation">Innovation</Link>
-        <Link to="/culture">Culture</Link>
-        <Link to="/arts">Arts</Link>
-        <Link to="/travel">Travel</Link>
-        <Link to="/earth">Earth</Link>
-        <Link to="/audio">Audio</Link>
-        <Link to="/video">Video</Link>
-        <Link to="/live">Live</Link>
-        <Link to="/summarize">Summarize</Link>
+        <Link
+          to="/summarize"
+          className={currentPath === "/summarize" ? "active" : ""}
+        >
+          Summarize
+        </Link>
+        <Link to="/news" className={currentPath === "/news" ? "active" : ""}>
+          News
+        </Link>
+        <Link to="/sport" className={currentPath === "/sport" ? "active" : ""}>
+          Sport
+        </Link>
+        <Link
+          to="/business"
+          className={currentPath === "/business" ? "active" : ""}
+        >
+          Business
+        </Link>
+        <Link
+          to="/innovation"
+          className={currentPath === "/innovation" ? "active" : ""}
+        >
+          Innovation
+        </Link>
+        <Link
+          to="/culture"
+          className={currentPath === "/culture" ? "active" : ""}
+        >
+          Culture
+        </Link>
+        <Link to="/arts" className={currentPath === "/arts" ? "active" : ""}>
+          Arts
+        </Link>
+        <Link
+          to="/travel"
+          className={currentPath === "/travel" ? "active" : ""}
+        >
+          Travel
+        </Link>
+        <Link to="/earth" className={currentPath === "/earth" ? "active" : ""}>
+          Earth
+        </Link>
+        <Link to="/audio" className={currentPath === "/audio" ? "active" : ""}>
+          Audio
+        </Link>
+        <Link to="/video" className={currentPath === "/video" ? "active" : ""}>
+          Video
+        </Link>
+        <Link to="/live" className={currentPath === "/live" ? "active" : ""}>
+          Live
+        </Link>
       </BottomNav>
     </NavbarWrapper>
   );

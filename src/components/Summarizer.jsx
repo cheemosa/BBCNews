@@ -116,6 +116,10 @@ const Summarizer = () => {
     setUrl(e.target.value);
   };
 
+  const isBBCUrl = (url) => {
+    return url.startsWith('https://www.bbc.com/');
+  };
+
   const getSummary = async (data) => {
     const response = await fetch(
       "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
@@ -136,6 +140,12 @@ const Summarizer = () => {
 
     if (!url) {
       setError("Please enter a valid URL");
+      return;
+    }
+
+    // Check if the URL is from BBC
+    if (!isBBCUrl(url)) {
+      setError("Please enter a valid BBC News URL (https://www.bbc.com/...)");
       return;
     }
 
@@ -214,7 +224,7 @@ const Summarizer = () => {
 
       const data = {
         inputs: textForSummary,
-        parameters: { max_length: 250, min_length: 100 },
+        parameters: { max_length: 512, min_length: 128 },
       };
       const result = await getSummary(data);
 
