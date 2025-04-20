@@ -104,14 +104,14 @@ const SummaryModal = ({ open, onClose, url, title }) => {
     }
   }, [open, url]);
 
-  console.log("HUGGING FACE TOKEN", process.env.HF_TOKEN);
+  console.log("HUGGING FACE TOKEN", import.meta.env.HF_TOKEN);
 
   const getSummary = async (data) => {
     const response = await fetch(
       "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
       {
         headers: {
-          Authorization: `Bearer ${process.env.HF_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.HF_TOKEN}`,
         },
         method: "POST",
         body: JSON.stringify(data),
