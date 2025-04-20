@@ -109,7 +109,7 @@ const SummaryModal = ({ open, onClose, url, title }) => {
       "https://api-inference.huggingface.co/models/facebook/bart-large-cnn",
       {
         headers: {
-          Authorization: "Bearer",
+          Authorization: `Bearer ${process.env.HF_TOKEN}`,
         },
         method: "POST",
         body: JSON.stringify(data),
